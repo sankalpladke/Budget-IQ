@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Budget IQ Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light p-4">
+<div class="container">
+    <h1 class="mb-4 text-primary">Budget IQ</h1>
+
+    <!-- ✅ Total Values -->
+    <div class="alert alert-info">
+        <h4>Total Expenses: ₹{{ total }}</h4>
+        <h4>Total Budget: ₹{{ total_budget }}</h4>
+    </div>
+
+    <!-- ✅ Expenses by Category -->
+    <h3>Expenses by Category</h3>
+    <ul class="list-group mb-4">
+        {% for category, amount in summary.items() %}
+            <li class="list-group-item d-flex justify-content-between">
+                <strong>{{ category }}</strong> <span>₹{{ amount }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- ✅ Budgets by Category -->
+    <h3>Budgets by Category</h3>
+    <ul class="list-group mb-4">
+        {% for category, amount in budget_summary.items() %}
+            <li class="list-group-item d-flex justify-content-between">
+                <strong>{{ category }}</strong> <span>₹{{ amount }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- ✅ Navigation Buttons -->
+    <div class="d-flex flex-wrap gap-3">
+        <a href="{{ url_for('add_expense') }}" class="btn btn-success">Add Expense</a>
+        <a href="{{ url_for('view_expenses') }}" class="btn btn-primary">View Expenses</a>
+        <a href="{{ url_for('add_budget') }}" class="btn btn-warning">Add Budget</a>
+        <a href="{{ url_for('reports') }}" class="btn btn-info">Reports</a>
+        <a href="{{ url_for('charts') }}" class="btn btn-dark">View Charts</a>
+    </div>
+</div>
+</body>
+</html>
